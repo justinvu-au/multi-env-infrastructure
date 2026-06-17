@@ -23,7 +23,7 @@ provider "azurerm" {
 }
 
 locals {
-    prefix = "${var.project_name} - ${var.environment}"
+    prefix = "${var.project_name}-${var.environment}"
     tags = {
         project = var.project_name
         environment = var.environment
@@ -32,9 +32,9 @@ locals {
 }
 
 resource "azurerm_resource_group" "main" {
-    name = "${locals.prefix}-rg"
+    name = "${local.prefix}-rg"
     location = var.location
-    tags = locals.tags
+    tags = local.tags
 }
 
 
@@ -42,21 +42,21 @@ resource "azurerm_container_registry" "acr" {
     name = "${var.project_name}${var.environment}acr"
     resource_group_name = azurerm_resource_group.main.name
     location = azurerm_resource_group.main.location
-    sku = "Basic
+    sku = "Basic"
     admin_enabled = false
-    tags = locals.tags
+    tags = local.tags
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
-    name = "${var.prefix}-aks"
+    name = "${local.prefix}-aks"
     resource_group_name = azurerm_resource_group.main.name
     location = azurerm_resource_group.main.location
-    dns_prefix = "${var.prefix}-aks"
+    dns_prefix = "${local.prefix}-aks"
 
     default_node_pool {
         name = "default"
         node_count = var.aks_node_count
-        node_size = var.aks_node_size
+        vm_size = var.aks_node_size
     }
 
     identity {
