@@ -48,10 +48,10 @@ resource "azurerm_container_registry" "acr" {
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
-    name = "${var.prefix}-aks"
+    name = "${local.prefix}-aks"
     resource_group_name = azurerm_resource_group.main.name
     location = azurerm_resource_group.main.location
-    dns_prefix = "${var.prefix}-aks"
+    dns_prefix = "${local.prefix}-aks"
 
     default_node_pool {
         name = "default"
