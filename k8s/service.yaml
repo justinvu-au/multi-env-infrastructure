@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: plinfra-app-svc
+  labels:
+    app: plinfra-app
+spec:
+  selector:
+    app: plinfra-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: LoadBalancer
