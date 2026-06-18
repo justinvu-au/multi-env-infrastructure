@@ -73,6 +73,8 @@ Each environment has its own:
 
 ## Project structure
 
+```
+
 multi-env-infrastructure/
 
 ├── app/
@@ -116,6 +118,8 @@ multi-env-infrastructure/
 ├── deploy-staging.yml   # Triggered on push to staging
 
 └── deploy-prod.yml      # Triggered on push to main, requires approval
+
+```
 
 ---
 
