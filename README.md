@@ -72,7 +72,7 @@ Each environment has its own:
 ---
 
 ## Project structure
----
+
 multi-env-infrastructure/
 
 ├── app/
